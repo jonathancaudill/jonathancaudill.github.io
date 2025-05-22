@@ -1,136 +1,79 @@
 
-import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const Index = () => {
-  const [text, setText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(60);
-  const [wordsPerMin, setWordsPerMin] = useState(0);
-  const [charsPerMin, setCharsPerMin] = useState(0);
-  const [accuracy, setAccuracy] = useState(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const startTyping = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-    
-    setText("");
-    setIsTyping(true);
-    setTimeLeft(60);
-    setWordsPerMin(0);
-    setCharsPerMin(0);
-    setAccuracy(100);
-    
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-    }
-    
-    timerRef.current = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        if (prevTime <= 1) {
-          clearInterval(timerRef.current as NodeJS.Timeout);
-          setIsTyping(false);
-          calculateResults();
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-  };
-
-  const calculateResults = () => {
-    const words = text.trim().split(/\s+/).filter(word => word !== "").length;
-    const chars = text.length;
-    
-    setWordsPerMin(words);
-    setCharsPerMin(chars);
-    
-    toast({
-      title: "Time's up!",
-      description: `You typed ${words} words (${chars} characters)`,
-    });
-  };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 p-4">
-      <div className="w-full max-w-3xl">
-        <h2 className="text-center text-gray-300 text-lg mb-2 uppercase tracking-wider">Typing Speed Test</h2>
-        <h1 className="text-center text-white text-6xl font-bold mb-12">Notes, Revisited</h1>
-
-        <div className="flex justify-center mb-12 gap-16">
-          <div className="text-center">
+    <div className="min-h-screen pt-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl dark:text-white">
+                <span className="block">Hi, I'm</span>
+                <span className="block text-indigo-600 dark:text-indigo-400">Your Name</span>
+              </h1>
+              <p className="mt-6 text-lg text-gray-500 max-w-3xl dark:text-gray-400">
+                I'm a developer, writer, and creative thinker. This is my personal space where I share my thoughts, projects, and experiences.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link to="/writing">
+                  <Button className="inline-flex items-center gap-2">
+                    Read my blog
+                    <ArrowRight size={16} />
+                  </Button>
+                </Link>
+                <Link to="/work">
+                  <Button variant="outline" className="inline-flex items-center gap-2">
+                    See my work
+                    <ArrowRight size={16} />
+                  </Button>
+                </Link>
+              </div>
+            </div>
             <div className="flex justify-center">
-              <div className="rounded-full border-4 border-yellow-400 w-32 h-32 flex items-center justify-center">
-                <div>
-                  <div className="text-white text-5xl font-bold">{timeLeft}</div>
-                  <div className="text-gray-400 text-sm">seconds</div>
-                </div>
+              <div className="h-64 w-64 rounded-full bg-indigo-100 flex items-center justify-center dark:bg-indigo-900/30">
+                <span className="text-indigo-600 dark:text-indigo-400 text-lg">Your Photo</span>
               </div>
             </div>
           </div>
-
-          <div className="text-center">
-            <div className="text-white text-5xl font-bold">{wordsPerMin}</div>
-            <div className="text-gray-400">words/min</div>
-          </div>
-
-          <div className="text-center">
-            <div className="text-white text-5xl font-bold">{charsPerMin}</div>
-            <div className="text-gray-400">chars/min</div>
-          </div>
-
-          <div className="text-center">
-            <div className="text-white text-5xl font-bold">{accuracy}</div>
-            <div className="text-gray-400">% accuracy</div>
-          </div>
         </div>
 
-        <div className="text-center mb-6">
-          <Button
-            onClick={startTyping}
-            disabled={isTyping}
-            className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-2 text-lg"
-          >
-            Start typing
-          </Button>
-        </div>
-
-        <div className="bg-gray-700/50 p-8 rounded-lg shadow-xl backdrop-blur-sm">
-          <Textarea
-            ref={textareaRef}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            disabled={!isTyping}
-            placeholder={isTyping ? "" : "Text will appear here when you start typing..."}
-            className="h-40 bg-transparent border-none text-white text-xl focus-visible:ring-0 resize-none"
-          />
-          
-          {!isTyping && (
-            <div className="text-gray-300 mt-2 text-xl">
-              {text ? 
-                "Great job! Click 'Start typing' to try again." 
-                : "Click 'Start typing' to begin the test."}
+        <div className="py-12 border-t border-gray-200 dark:border-gray-800">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Recent Posts</h2>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+              <p className="text-sm text-gray-500 dark:text-gray-400">May 22, 2025</p>
+              <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
+                <Link to="/writing/1" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+                  Getting Started with React
+                </Link>
+              </h3>
+              <p className="mt-3 text-gray-500 dark:text-gray-400">
+                An introduction to React and how to build your first component.
+              </p>
             </div>
-          )}
-          
-          {isTyping && (
-            <div className="text-gray-300 mt-2 text-xl">
-              cover strong act plane land long
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+              <p className="text-sm text-gray-500 dark:text-gray-400">May 15, 2025</p>
+              <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
+                <Link to="/writing/2" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+                  The Future of Web Development
+                </Link>
+              </h3>
+              <p className="mt-3 text-gray-500 dark:text-gray-400">
+                Exploring emerging technologies that will shape the future of the web.
+              </p>
             </div>
-          )}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/writing">
+              <Button variant="outline" className="inline-flex items-center gap-2">
+                View all posts
+                <ArrowRight size={16} />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
