@@ -9,6 +9,7 @@ import Writing from "./pages/Writing";
 import WritingDetail from "./pages/WritingDetail";
 import Work from "./pages/Work";
 import Contact from "./pages/Contact";
+import Stuck from "./pages/Stuck";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/writing/:slug" element={<WritingDetail />} />
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/stuck" element={<Stuck />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
