@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Home, BookText, Briefcase, Mail, Menu, X } from "lucide-react";
+import { Home, BookText, Briefcase, Mail, Menu, X, StickyNote } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -41,6 +40,13 @@ const Navbar = () => {
               >
                 <Briefcase size={18} />
                 <span>Work</span>
+              </Link>
+              <Link
+                to="/stuck"
+                className="flex items-center gap-1.5 text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-white"
+              >
+                <StickyNote size={18} />
+                <span>Stuck</span>
               </Link>
               <Link
                 to="/contact"
@@ -95,6 +101,14 @@ const Navbar = () => {
             >
               <Briefcase size={18} />
               <span>Work</span>
+            </Link>
+            <Link
+              to="/stuck"
+              className="flex items-center gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <StickyNote size={18} />
+              <span>Stuck</span>
             </Link>
             <Link
               to="/contact"
