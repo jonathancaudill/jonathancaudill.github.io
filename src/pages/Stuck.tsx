@@ -39,9 +39,9 @@ const Stuck: React.FC = () => {
     <div className="container max-w-4xl mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold mb-8 text-center">MacOS Stickies, Reimagined.</h1>
       
-      {/* Sticky Note Editor with smooth fade */}
+      {/* Sticky Note Editor that fades into background */}
       <div className="relative mb-32">
-        <div className="bg-card rounded-xl shadow-lg p-6 border relative">
+        <div className="bg-card rounded-xl shadow-lg p-6 border relative overflow-hidden">
           <div className="flex justify-between items-center mb-4">
             <div className="flex gap-2">
               <div className="w-3 h-3 rounded-full bg-rose-500"></div>
@@ -72,9 +72,10 @@ const Stuck: React.FC = () => {
             placeholder="start typing..."
             autoFocus
           />
+          
+          {/* Gradient overlay that makes the bottom fade into background */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none"></div>
         </div>
-        {/* Smooth fade gradient at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-transparent via-30% via-background/20 via-60% via-background/60 via-80% to-background pointer-events-none"></div>
       </div>
       
       {/* Features section */}
