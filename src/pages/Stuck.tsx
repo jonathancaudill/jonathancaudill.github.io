@@ -73,8 +73,8 @@ const Stuck: React.FC = () => {
             autoFocus
           />
           
-          {/* Gradient overlay that makes the bottom fade into background */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none"></div>
+          {/* Much stronger gradient overlay that completely hides the bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent from-0% via-background/30 via-40% via-background/70 via-70% to-background to-100% pointer-events-none"></div>
         </div>
       </div>
       
