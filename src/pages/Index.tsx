@@ -1,78 +1,91 @@
-
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import GradientBackground from "@/components/GradientBackground";
+import { posts } from "@/data/posts";
 
 const Index = () => {
   return (
-    <div className="min-h-screen pt-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl dark:text-white">
-                <span className="block">Hi, I'm</span>
-                <span className="block text-indigo-600 dark:text-indigo-400">Your Name</span>
+    <div className="relative min-h-screen">
+      <GradientBackground />
+      <div className="relative">
+        <div className="container max-w-5xl mx-auto px-4 py-12 pt-24">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
+            <div className="flex-1 text-left">
+              <h1 className="text-7xl md:text-8xl font-black mb-8 leading-tight text-white">
+                <span className="block">Hi, I'm Jonathan</span>
+                <span className="block">Caudill</span>
               </h1>
-              <p className="mt-6 text-lg text-gray-500 max-w-3xl dark:text-gray-400">
-                I'm a developer, writer, and creative thinker. This is my personal space where I share my thoughts, projects, and experiences.
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                I'm a software engineer and writer, passionate about building beautiful, 
+                user-friendly applications and sharing knowledge with others.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/writing">
-                  <Button className="inline-flex items-center gap-2">
-                    Read my blog
-                    <ArrowRight size={16} />
-                  </Button>
-                </Link>
-                <Link to="/work">
-                  <Button variant="outline" className="inline-flex items-center gap-2">
-                    See my work
-                    <ArrowRight size={16} />
-                  </Button>
-                </Link>
+              <div className="flex gap-4">
+                <AnimatedButton href="/writing">
+                  Read my writing
+                </AnimatedButton>
+                <AnimatedButton href="/stuck" variant="outline">
+                  Get stuck
+                </AnimatedButton>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="h-64 w-64 rounded-full bg-indigo-100 flex items-center justify-center dark:bg-indigo-900/30">
-                <span className="text-indigo-600 dark:text-indigo-400 text-lg">Your Photo</span>
-              </div>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/20">
+              <img
+                src="/profile.jpg"
+                alt="Jonathan Caudill"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-        </div>
 
-        <div className="py-12 border-t border-gray-200 dark:border-gray-800">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Recent Posts</h2>
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-              <p className="text-sm text-gray-500 dark:text-gray-400">May 22, 2025</p>
-              <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
-                <Link to="/writing/1" className="hover:text-indigo-600 dark:hover:text-indigo-400">
-                  Getting Started with React
+          {/* Recent Posts */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold mb-8 text-white">Recent Posts</h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              {posts.slice(0, 2).map((post) => (
+                <Link 
+                  key={post.slug} 
+                  to={`/writing/${post.slug}`}
+                  className="group block"
+                >
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 transition-all duration-300 hover:bg-white/20">
+                    <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-white/90">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-300 mb-4">{post.excerpt}</p>
+                    <div className="flex items-center text-sm text-gray-400">
+                      <span>{post.date}</span>
+                      <span className="mx-2">•</span>
+                      <span>{post.readingTime} min read</span>
+                    </div>
+                  </div>
                 </Link>
-              </h3>
-              <p className="mt-3 text-gray-500 dark:text-gray-400">
-                An introduction to React and how to build your first component.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-              <p className="text-sm text-gray-500 dark:text-gray-400">May 15, 2025</p>
-              <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
-                <Link to="/writing/2" className="hover:text-indigo-600 dark:hover:text-indigo-400">
-                  The Future of Web Development
-                </Link>
-              </h3>
-              <p className="mt-3 text-gray-500 dark:text-gray-400">
-                Exploring emerging technologies that will shape the future of the web.
-              </p>
+              ))}
             </div>
           </div>
-          <div className="mt-8 text-center">
-            <Link to="/writing">
-              <Button variant="outline" className="inline-flex items-center gap-2">
-                View all posts
-                <ArrowRight size={16} />
-              </Button>
-            </Link>
+
+          {/* Featured Projects */}
+          <div>
+            <h2 className="text-3xl font-bold mb-8 text-white">Featured Projects</h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <h3 className="text-xl font-semibold mb-2 text-white">Project One</h3>
+                <p className="text-gray-300 mb-4">
+                  A brief description of the project and its key features.
+                </p>
+                <AnimatedButton variant="outline" showArrow={false}>
+                  View Project
+                </AnimatedButton>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <h3 className="text-xl font-semibold mb-2 text-white">Project Two</h3>
+                <p className="text-gray-300 mb-4">
+                  Another project description highlighting its unique aspects.
+                </p>
+                <AnimatedButton variant="outline" showArrow={false}>
+                  View Project
+                </AnimatedButton>
+              </div>
+            </div>
           </div>
         </div>
       </div>

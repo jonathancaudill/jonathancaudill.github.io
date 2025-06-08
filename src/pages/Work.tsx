@@ -1,39 +1,74 @@
-
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, ExternalLink } from "lucide-react";
+import GradientBackground from "@/components/GradientBackground";
 import { projects } from "@/data/projects";
-import ProjectCard from "@/components/ProjectCard";
 
 const Work = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
-    <div className="min-h-screen pt-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Work</h1>
-          <p className="mt-4 text-lg text-gray-500 max-w-3xl dark:text-gray-400">
-            A showcase of my projects, experiments, and open-source contributions.
+    <div className="relative min-h-screen">
+      <GradientBackground />
+      <div className="relative">
+        <div className="container max-w-5xl mx-auto px-4 py-12 pt-24">
+          <h1 className="text-4xl font-bold mb-8 text-white">Work</h1>
+          <p className="text-gray-300 mb-8">
+            A collection of my projects, contributions, and professional experience.
           </p>
+
+          {/* Search bar */}
+          <div className="relative mb-8">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search projects..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50"
+            />
+          </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <div key={project.id} className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
+                <h2 className="text-xl font-semibold text-white">{project.title}</h2>
+                <p className="mt-2 text-gray-300">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="px-2 py-1 text-sm bg-white/10 rounded-full text-gray-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-300 hover:text-indigo-200"
+                  >
+                    View Project →
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="mt-16 bg-gray-50 border border-gray-200 rounded-lg p-6 dark:bg-gray-800 dark:border-gray-700">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">GitHub Contributions</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-300">
+          <div className="mt-16 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
+            <h2 className="text-2xl font-semibold text-white">GitHub Contributions</h2>
+            <p className="mt-2 text-gray-300">
               Check out my open source contributions and other projects on GitHub.
             </p>
             <div className="mt-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/jonathancaudill"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+                className="text-indigo-300 hover:text-indigo-200"
               >
-                <span>View GitHub Profile</span>
-                <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                View GitHub Profile →
               </a>
             </div>
           </div>

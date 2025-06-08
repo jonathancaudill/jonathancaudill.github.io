@@ -1,4 +1,3 @@
-
 export interface Post {
   id: number;
   title: string;
@@ -6,13 +5,14 @@ export interface Post {
   content: string;
   date: string;
   slug: string;
+  readingTime: number;
 }
 
 export const posts: Post[] = [
   {
     id: 1,
     title: "Getting Started with React",
-    excerpt: "An introduction to React and how to build your first component.",
+    excerpt: "Learn the basics of React and how to build your first application.",
     content: `
 # Getting Started with React
 
@@ -30,13 +30,14 @@ function Welcome(props) {
 
 This is just a brief introduction to React. In future posts, we'll dive deeper into React's features and capabilities.
     `,
-    date: "May 22, 2025",
-    slug: "getting-started-with-react"
+    date: "March 15, 2024",
+    slug: "getting-started-with-react",
+    readingTime: 5
   },
   {
     id: 2,
     title: "The Future of Web Development",
-    excerpt: "Exploring emerging technologies that will shape the future of the web.",
+    excerpt: "Exploring upcoming trends and technologies in web development.",
     content: `
 # The Future of Web Development
 
@@ -56,17 +57,18 @@ Progressive Web Apps (PWAs) provide a native app-like experience on the web, wit
 
 The future of web development is exciting, and I'm looking forward to exploring these technologies in more depth.
     `,
-    date: "May 15, 2025",
-    slug: "future-of-web-development"
+    date: "March 8, 2024",
+    slug: "future-of-web-development",
+    readingTime: 8
   },
   {
     id: 3,
     title: "CSS Tips and Tricks",
-    excerpt: "Helpful CSS techniques to improve your web design skills.",
+    excerpt: "A collection of useful CSS techniques to improve your web development workflow.",
     content: `
 # CSS Tips and Tricks
 
-Here are some CSS tips and tricks that can help you improve your web design skills:
+Here are some **CSS** tips and tricks that can help you improve your web design skills:
 
 ## Using CSS Grid
 
@@ -96,7 +98,8 @@ CSS variables (custom properties) allow you to store specific values to reuse th
 
 These are just a few examples of how you can leverage CSS to create beautiful and responsive web designs.
     `,
-    date: "May 8, 2025",
-    slug: "css-tips-and-tricks"
+    date: "March 1, 2024",
+    slug: "css-tips-and-tricks",
+    readingTime: 3
   }
 ];
