@@ -4,7 +4,6 @@ import { posts } from "@/data/posts";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
 
 const WritingDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -48,7 +47,7 @@ const WritingDetail = () => {
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{post.title}</h1>
               <p className="text-gray-500 dark:text-gray-400">{post.date}</p>
             </div>
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <div className="whitespace-pre-wrap text-gray-900 dark:text-white">{post.content}</div>
           </div>
         </div>
       </div>
