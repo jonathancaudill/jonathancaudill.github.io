@@ -9,6 +9,7 @@ const Stuck = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const saveTimeoutRef = useRef<NodeJS.Timeout>();
 
   // Focus on the textarea when the component mounts
   useEffect(() => {
@@ -28,6 +29,44 @@ const Stuck = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle auto-saving
+  useEffect(() => {
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    if (note) {
+      setIsSaving(true);
+      setIsSaved(false);
+      
+      saveTimeoutRef.current = setTimeout(() => {
+        // Simulate saving to localStorage
+        localStorage.setItem('stuck-note', note);
+        setIsSaving(false);
+        setIsSaved(true);
+        
+        // Reset saved status after 2 seconds
+        setTimeout(() => {
+          setIsSaved(false);
+        }, 2000);
+      }, 1000);
+    }
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [note]);
+
+  // Load saved note on mount
+  useEffect(() => {
+    const savedNote = localStorage.getItem('stuck-note');
+    if (savedNote) {
+      setNote(savedNote);
+    }
   }, []);
 
   return (
