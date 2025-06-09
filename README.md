@@ -1,3 +1,3 @@
 # My Personal Site
 
-Co-created with lovable.dev.
+My personal site to display work and writing.
