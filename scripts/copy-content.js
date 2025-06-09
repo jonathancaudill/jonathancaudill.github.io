@@ -1,18 +1,17 @@
-const fs = require('fs-extra');
-const path = require('path');
+import fs from 'fs-extra';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const sourceDir = path.join(__dirname, '../content');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const sourceDir = path.join(__dirname, '../src/content');
 const targetDir = path.join(__dirname, '../public/content');
 
 // Ensure the target directory exists
 fs.ensureDirSync(targetDir);
 
-// Copy the content directory
-fs.copySync(sourceDir, targetDir, {
-  filter: (src) => {
-    // Only copy markdown files
-    return src.endsWith('.md');
-  },
-});
+// Copy all files from source to target
+fs.copySync(sourceDir, targetDir, { overwrite: true });
 
-console.log('Content directory copied to public folder'); 
+console.log('Content files copied successfully!'); 
