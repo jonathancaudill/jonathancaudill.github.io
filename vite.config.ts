@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  publicDir: 'content',
+  publicDir: 'public',
   build: {
     rollupOptions: {
       input: {
@@ -30,7 +30,6 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-  assetsInclude: ['**/*.md'],
   optimizeDeps: {
     include: ['remark', 'remark-html'],
   },
