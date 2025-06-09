@@ -14,8 +14,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="text-white font-semibold text-lg">
-              Jonathan Caudill
+            <Link to="/" className="flex items-center">
+              <img src="/logo.svg" alt="Jonathan Caudill" className="h-16 w-16 brightness-0 invert" />
             </Link>
           </div>
           <div className="hidden md:block">

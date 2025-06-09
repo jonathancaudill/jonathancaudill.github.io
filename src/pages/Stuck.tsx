@@ -77,7 +77,7 @@ const Stuck = () => {
       {/* Content */}
       <div className="relative">
         <div className="container max-w-4xl mx-auto px-4 py-12 pt-64">
-          <h1 className="text-7xl md:text-8xl font-black mb-8 text-center leading-tight text-white">
+          <h1 className="text-7xl md:text-8xl font-black tracking-tighter mb-8 text-center leading-tight text-white">
             <span className="block">MacOS Stickies,</span>
             <span className="block">Reimagined.</span>
           </h1>

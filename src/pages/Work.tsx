@@ -1,12 +1,22 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ExternalLink } from "lucide-react";
+import { Search } from "lucide-react";
 import GradientBackground from "@/components/GradientBackground";
 import { projects } from "@/data/projects";
+import ProjectCard from "@/components/ProjectCard";
+import { Link } from "react-router-dom";
 
 const Work = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProjects = projects.filter(
+    (project) =>
+      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.technologies.some((tech) =>
+        tech.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+  );
 
   return (
     <div className="relative min-h-screen">
@@ -31,28 +41,10 @@ const Work = () => {
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <div key={project.id} className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
-                <h2 className="text-xl font-semibold text-white">{project.title}</h2>
-                <p className="mt-2 text-gray-300">{project.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="px-2 py-1 text-sm bg-white/10 rounded-full text-gray-300">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-indigo-300 hover:text-indigo-200"
-                  >
-                    View Project →
-                  </a>
-                </div>
-              </div>
+            {filteredProjects.map((project) => (
+              <Link key={project.id} to={`/work/${project.slug}`} className="block group">
+                <ProjectCard project={project} />
+              </Link>
             ))}
           </div>
 

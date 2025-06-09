@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllPosts, Post } from "@/lib/markdown";
+import { getAllPosts, Post } from "@/lib/blogMarkdown";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";

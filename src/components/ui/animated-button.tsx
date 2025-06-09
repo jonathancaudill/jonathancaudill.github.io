@@ -7,6 +7,7 @@ interface AnimatedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'outline';
   showArrow?: boolean;
   href?: string;
+  size?: 'default' | 'sm' | 'lg' | 'icon';
 }
 
 const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
@@ -17,6 +18,12 @@ const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       variant === 'default' 
         ? "bg-white text-gray-900 hover:bg-gray-100" 
         : "bg-transparent border border-white/20 text-white hover:bg-white/10",
+      
+      // Add size styling
+      props.size === 'sm' && "h-9 px-3",
+      props.size === 'lg' && "h-11 px-8",
+      props.size === 'icon' && "h-10 w-10",
+      !props.size || props.size === 'default' && "h-10 px-4 py-2",
       className
     );
 
