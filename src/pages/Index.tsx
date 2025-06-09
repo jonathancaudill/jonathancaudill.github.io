@@ -18,7 +18,7 @@ const Index = () => {
                 <span className="block">Caudill</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-                I'm an analyst, writer, and amateur thinker. I care about art, data, and people.
+                I'm an analyst, writer, and amateur thinker. I'm passionate about creating, learning, and sharing knowledge with others. I'm also always working on something new—you can find some of my work here.
               </p>
               <div className="flex gap-4">
                 <AnimatedButton href="/writing">
