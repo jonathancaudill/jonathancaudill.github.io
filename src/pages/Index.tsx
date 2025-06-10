@@ -1,11 +1,27 @@
 import { Link } from "react-router-dom";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import GradientBackground from "@/components/GradientBackground";
-import { posts } from "@/data/posts";
-import { projects } from "@/data/projects";
+import { getAllPosts, Post } from "@/lib/blogMarkdown";
+import { getAllProjects, Project } from "@/lib/projectMarkdown";
 import ProjectCard from "@/components/ProjectCard";
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const [recentPosts, setRecentPosts] = useState<Post[]>([]);
+  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const loadContent = async () => {
+      const [posts, projects] = await Promise.all([
+        getAllPosts(),
+        getAllProjects()
+      ]);
+      setRecentPosts(posts.slice(0, 2));
+      setFeaturedProjects(projects.slice(0, 2));
+    };
+    loadContent();
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       <GradientBackground />
@@ -42,7 +58,7 @@ const Index = () => {
           <div className="mb-16">
             <h2 className="text-3xl font-bold mb-8 text-white">Recent Posts</h2>
             <div className="grid gap-8 md:grid-cols-2">
-              {posts.slice(0, 2).map((post) => (
+              {recentPosts.map((post) => (
                 <Link 
                   key={post.slug} 
                   to={`/writing/${post.slug}`}
@@ -68,9 +84,9 @@ const Index = () => {
           <div>
             <h2 className="text-3xl font-bold mb-8 text-white">Featured Projects</h2>
             <div className="grid gap-8 md:grid-cols-2">
-              {projects.slice(0, 2).map((project) => (
-                <Link key={project.id} to={`/work/${project.slug}`} className="block group">
-                  <ProjectCard key={project.id} project={project} />
+              {featuredProjects.map((project) => (
+                <Link key={project.slug} to={`/work/${project.slug}`} className="block group">
+                  <ProjectCard project={project} />
                 </Link>
               ))}
             </div>

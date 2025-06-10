@@ -1,4 +1,4 @@
-import { Post } from "@/data/posts";
+import { Post } from "@/lib/blogMarkdown";
 import { format } from "date-fns";
 
 interface BlogPostProps {

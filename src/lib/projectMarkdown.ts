@@ -1,14 +1,23 @@
 import { remark } from 'remark';
 import html from 'remark-html';
-import { format, parseISO } from 'date-fns';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import remarkSlug from 'remark-slug';
 import remarkToc from 'remark-toc';
-import { projects as staticProjects, Project as ProjectInterface } from '@/data/projects';
 
-export interface Project extends ProjectInterface {
-  content: string; // HTML content after markdown processing
+// Import all markdown files from content/projects
+const projectFiles = import.meta.glob('../content/projects/*.md', { as: 'raw' });
+
+export interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  image?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  slug: string;
+  content: string;
+  readingTime: number;
 }
 
 function calculateReadingTime(content: string): number {
@@ -17,27 +26,63 @@ function calculateReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
+function parseFrontmatter(content: string) {
+  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const match = content.match(frontmatterRegex);
+  
+  if (!match) {
+    throw new Error('No frontmatter found');
+  }
+  
+  const [, frontmatter, markdownContent] = match;
+  const data: Record<string, any> = {};
+  
+  frontmatter.split('\n').forEach(line => {
+    const [key, ...valueParts] = line.split(':');
+    if (key && valueParts.length > 0) {
+      const value = valueParts.join(':').trim().replace(/^["']|["']$/g, '');
+      // Handle arrays (technologies)
+      if (key.trim() === 'technologies') {
+        data[key.trim()] = value.split(',').map(tech => tech.trim());
+      } else {
+        data[key.trim()] = value;
+      }
+    }
+  });
+  
+  return { data, content: markdownContent };
+}
+
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   console.log('Getting project by slug:', slug);
   
   try {
-    const staticProject = staticProjects.find(p => p.slug === slug);
-
-    if (!staticProject) {
+    const filePath = `../content/projects/${slug}.md`;
+    const content = await projectFiles[filePath]();
+    
+    if (!content) {
       console.log('No project found for slug:', slug);
       return null;
     }
     
+    console.log('Project content loaded:', content.substring(0, 100) + '...');
+    const { data, content: markdownContent } = parseFrontmatter(content);
+    
     const processedContent = await remark()
       .use(remarkGfm)
       .use(html)
-      .process(staticProject.content);
+      .process(markdownContent);
     
     return {
-      ...staticProject,
+      title: data.title,
+      description: data.description,
+      technologies: data.technologies || [],
+      image: data.image,
+      githubUrl: data.githubUrl,
+      liveUrl: data.liveUrl,
+      slug: slug,
       content: processedContent.toString(),
-      // For projects, reading time can be calculated directly from the content string
-      readingTime: calculateReadingTime(staticProject.content)
+      readingTime: calculateReadingTime(markdownContent)
     };
   } catch (error) {
     console.error(`Error reading project ${slug}:`, error);
@@ -48,25 +93,33 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 export async function getAllProjects(): Promise<Project[]> {
   console.log('Getting all projects...');
   try {
-    const allProjectsData = await Promise.all(
-      staticProjects.map(async (project) => {
-        console.log('Processing project:', project.slug);
+    const projects = await Promise.all(
+      Object.entries(projectFiles).map(async ([filePath, getContent]) => {
+        const slug = filePath.split('/').pop()?.replace('.md', '') || '';
+        const content = await getContent();
+        const { data, content: markdownContent } = parseFrontmatter(content);
         
         const processedContent = await remark()
           .use(remarkGfm)
           .use(html)
-          .process(project.content);
+          .process(markdownContent);
         
         return {
-          ...project,
+          title: data.title,
+          description: data.description,
+          technologies: data.technologies || [],
+          image: data.image,
+          githubUrl: data.githubUrl,
+          liveUrl: data.liveUrl,
+          slug: slug,
           content: processedContent.toString(),
-          readingTime: calculateReadingTime(project.content)
+          readingTime: calculateReadingTime(markdownContent)
         };
       })
     );
     
-    console.log('All projects processed:', allProjectsData);
-    return allProjectsData;
+    console.log('All projects processed:', projects);
+    return projects;
   } catch (error) {
     console.error('Error reading projects:', error);
     return [];

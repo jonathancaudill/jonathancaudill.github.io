@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import GradientBackground from "@/components/GradientBackground";
-import { projects } from "@/data/projects";
+import { getAllProjects, Project } from "@/lib/projectMarkdown";
 import ProjectCard from "@/components/ProjectCard";
 import { Link } from "react-router-dom";
 
 const Work = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        setProjects(allProjects);
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProjects();
+  }, []);
 
   const filteredProjects = projects.filter(
     (project) =>
@@ -41,11 +58,19 @@ const Work = () => {
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects.map((project) => (
-              <Link key={project.id} to={`/work/${project.slug}`} className="block group">
-                <ProjectCard project={project} />
-              </Link>
-            ))}
+            {isLoading ? (
+              <div className="col-span-full text-center text-gray-300">Loading projects...</div>
+            ) : filteredProjects.length > 0 ? (
+              filteredProjects.map((project) => (
+                <Link key={project.slug} to={`/work/${project.slug}`} className="block group">
+                  <ProjectCard project={project} />
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-full text-center text-gray-300">
+                {searchQuery ? 'No projects found matching your search.' : 'No projects available.'}
+              </div>
+            )}
           </div>
 
           <div className="mt-16 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">

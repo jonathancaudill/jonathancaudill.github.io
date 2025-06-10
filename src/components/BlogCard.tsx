@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Post } from "@/data/posts";
+import { Post } from "@/lib/blogMarkdown";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";

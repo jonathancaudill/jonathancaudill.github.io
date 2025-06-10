@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Loader2, Download } from "lucide-react";
 import GradientBackground from "@/components/GradientBackground";
 
 const Stuck = () => {
@@ -14,7 +14,8 @@ const Stuck = () => {
   // Focus on the textarea when the component mounts
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.focus();
+      // Remove focus on mount to prevent centering
+      textareaRef.current.blur();
     }
   }, []);
 
@@ -69,6 +70,11 @@ const Stuck = () => {
     }
   }, []);
 
+  const handleDownload = () => {
+    const downloadUrl = "https://github.com/jonathancaudill/stuck/releases/download/main/stuck_0.1.1_aarch64.dmg";
+    window.open(downloadUrl, "_blank");
+  };
+
   return (
     <div className="relative min-h-screen">
       {/* Fixed gradient background */}
@@ -77,13 +83,33 @@ const Stuck = () => {
       {/* Content */}
       <div className="relative">
         <div className="container max-w-4xl mx-auto px-4 py-12 pt-64">
-          <h1 className="text-7xl md:text-8xl font-black tracking-tighter mb-8 text-center leading-tight text-white">
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-center leading-tight text-white">
             <span className="block">MacOS Stickies,</span>
             <span className="block">Reimagined.</span>
           </h1>
           
+          {/* Download Button */}
+          <div className="flex flex-col items-center mb-16">
+            <Button
+              onClick={handleDownload}
+              size="lg"
+              className="bg-white text-black hover:bg-white/90 px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Download for Mac
+            </Button>
+            <a 
+              href="https://github.com/jonathancaudill/stuck" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-2 text-sm text-white/70 hover:text-white/90 italic"
+            >
+              Note for MacOS 15 users
+            </a>
+          </div>
+          
           {/* Sticky Note Editor */}
-          <div className="relative mb-32" style={{ marginTop: '25vh' }}>
+          <div className="relative mb-32" style={{ marginTop: '15vh' }}>
             <div className="bg-white/20 backdrop-blur-xl rounded-xl shadow-lg p-6 border border-white/30">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex gap-2">
@@ -113,7 +139,6 @@ const Stuck = () => {
                 onChange={(e) => setNote(e.target.value)}
                 className="w-full bg-transparent border-none resize-none focus:outline-none focus:ring-0 min-h-[400px] font-sans text-white placeholder:text-white/50"
                 placeholder="start typing..."
-                autoFocus
               />
             </div>
           </div>

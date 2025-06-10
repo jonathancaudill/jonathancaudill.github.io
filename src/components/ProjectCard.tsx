@@ -1,4 +1,4 @@
-import { Project } from "@/data/projects";
+import { Project } from "@/lib/projectMarkdown";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
