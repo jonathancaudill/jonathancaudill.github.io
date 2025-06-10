@@ -11,14 +11,6 @@ const Stuck = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const saveTimeoutRef = useRef<NodeJS.Timeout>();
 
-  // Focus on the textarea when the component mounts
-  useEffect(() => {
-    if (textareaRef.current) {
-      // Remove focus on mount to prevent centering
-      textareaRef.current.blur();
-    }
-  }, []);
-
   // Handle scroll progress
   useEffect(() => {
     const handleScroll = () => {
