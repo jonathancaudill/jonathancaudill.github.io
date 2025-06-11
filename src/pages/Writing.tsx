@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import GradientBackground from "@/components/GradientBackground";
 import { format } from "date-fns";
+import BlogCard from "@/components/BlogCard";
 
 const Writing = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -64,17 +65,7 @@ const Writing = () => {
                   to={`/writing/${post.slug}`}
                   className="group block h-full"
                 >
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 transition-all duration-300 hover:bg-white/20 h-full flex flex-col">
-                    <div className="flex items-center gap-4 text-sm text-gray-300 mb-4">
-                      <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
-                      <span>•</span>
-                      <span>{post.readingTime} min read</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-white/90">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-300 line-clamp-3 flex-grow">{post.excerpt}</p>
-                  </div>
+                  <BlogCard post={post} />
                 </Link>
               ))
             ) : (

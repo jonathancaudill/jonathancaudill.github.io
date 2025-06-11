@@ -115,7 +115,11 @@ export async function getAllPosts(): Promise<Post[]> {
     );
     
     console.log('All posts processed:', posts);
-    return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return posts.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
   } catch (error) {
     console.error('Error reading posts:', error);
     return [];

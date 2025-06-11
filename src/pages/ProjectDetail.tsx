@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { getProjectBySlug } from "@/lib/projectMarkdown";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import GradientBackground from "@/components/GradientBackground";
 
@@ -75,14 +75,28 @@ const ProjectDetail = () => {
             <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-white prose-p:text-gray-300 prose-a:text-indigo-400 prose-code:text-indigo-400 prose-pre:bg-gray-800 prose-pre:text-gray-200 prose-blockquote:border-l-indigo-500 prose-blockquote:text-gray-300 prose-li:text-gray-300">
               <header className="mb-8">
                 <h1 className="text-4xl font-bold mb-4 text-white">{project.title}</h1>
-                <div className="flex items-center gap-4 text-gray-300">
+                <div className="flex items-center gap-4 text-gray-300 mb-4">
                   {project.readingTime && (
-                    <>
-                      <span>{project.readingTime} min read</span>
-                      <span>•</span>
-                    </>
+                    <span>{project.readingTime} min read</span>
                   )}
-                  <span>{project.description}</span>
+                </div>
+                <div className="flex gap-2 mb-4 not-prose">
+                  {project.githubUrl && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-white">
+                        <Github size={16} className="text-white" />
+                        <span>GitHub</span>
+                      </a>
+                    </Button>
+                  )}
+                  {project.liveUrl && (
+                    <Button size="sm" asChild>
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-black">
+                        <ExternalLink size={16} className="text-black" />
+                        <span>Live Demo</span>
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </header>
               

@@ -5,6 +5,7 @@ import { getAllPosts, Post } from "@/lib/blogMarkdown";
 import { getAllProjects, Project } from "@/lib/projectMarkdown";
 import ProjectCard from "@/components/ProjectCard";
 import { useEffect, useState } from "react";
+import BlogCard from "@/components/BlogCard";
 
 const Index = () => {
   const [recentPosts, setRecentPosts] = useState<Post[]>([]);
@@ -17,7 +18,8 @@ const Index = () => {
         getAllProjects()
       ]);
       setRecentPosts(posts.slice(0, 2));
-      setFeaturedProjects(projects.slice(0, 2));
+      const projectsWithHeadshot = projects.slice(0, 2).map(p => ({ ...p, image: '/personalsite.png' }));
+      setFeaturedProjects(projectsWithHeadshot);
     };
     loadContent();
   }, []);
@@ -36,13 +38,20 @@ const Index = () => {
               <p className="text-xl text-gray-300 mb-8 max-w-2xl">
                 I'm an analyst, writer, and amateur thinker. I'm passionate about creating, learning, and sharing knowledge with others. I'm also always working on something new—you can find some of my work here.
               </p>
-              <div className="flex gap-4">
-                <AnimatedButton href="/writing">
-                  Read my writing
-                </AnimatedButton>
-                <AnimatedButton href="/stuck" variant="outline">
-                  Download stuck
-                </AnimatedButton>
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-4">
+                  <AnimatedButton href="/work">
+                    Check out my work
+                  </AnimatedButton>
+                  <AnimatedButton href="/writing" variant="outline">
+                    Read my writing
+                  </AnimatedButton>
+                </div>
+                <div className="flex">
+                  <AnimatedButton href="/stuck" variant="outline">
+                    Download stuck
+                  </AnimatedButton>
+                </div>
               </div>
             </div>
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/20">
@@ -62,19 +71,9 @@ const Index = () => {
                 <Link 
                   key={post.slug} 
                   to={`/writing/${post.slug}`}
-                  className="group block"
+                  className="group block h-full"
                 >
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 transition-all duration-300 hover:bg-white/20">
-                    <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-white/90">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-300 mb-4">{post.excerpt}</p>
-                    <div className="flex items-center text-sm text-gray-400">
-                      <span>{post.date}</span>
-                      <span className="mx-2">•</span>
-                      <span>{post.readingTime} min read</span>
-                    </div>
-                  </div>
+                  <BlogCard post={post} />
                 </Link>
               ))}
             </div>

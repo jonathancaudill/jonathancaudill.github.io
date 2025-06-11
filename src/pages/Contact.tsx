@@ -1,7 +1,22 @@
 import { Mail, Phone, MessageSquare, Github, Linkedin } from "lucide-react";
 import GradientBackground from "@/components/GradientBackground";
+import { useState } from "react";
 
 const Contact = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x, y });
+  };
+
+  const glowStyle = {
+    '--mouse-x': `${mousePosition.x}px`,
+    '--mouse-y': `${mousePosition.y}px`,
+  } as React.CSSProperties;
+
   return (
     <div className="relative min-h-screen">
       <GradientBackground />
@@ -13,64 +28,104 @@ const Contact = () => {
           </p>
 
           <div className="max-w-2xl space-y-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <Mail className="w-6 h-6 text-white" />
-                <h2 className="text-xl font-semibold text-white">Email</h2>
-              </div>
-              <a 
-                href="mailto:jonathan.s.caudill@gmail.com" 
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                jonathan.s.caudill@gmail.com
-              </a>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-6 h-6 text-white" />
-                  <MessageSquare className="w-5 h-5 text-white" />
+            <a 
+              href="mailto:jonathan.s.caudill@gmail.com"
+              className="block group relative"
+              onMouseMove={handleMouseMove}
+              style={glowStyle}
+            >
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.15) 0%, transparent 80%)`,
+                  transform: `perspective(1000px) rotateX(calc((var(--mouse-y) - 50%) * 0.1deg)) rotateY(calc((var(--mouse-x) - 50%) * 0.1deg))`,
+                }}
+              />
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6 transition-all duration-300 hover:bg-white/20">
+                <div className="flex items-center gap-4 mb-4">
+                  <Mail className="w-6 h-6 text-white" />
+                  <h2 className="text-xl font-semibold text-white">Email</h2>
                 </div>
-                <h2 className="text-xl font-semibold text-white">Phone</h2>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  jonathan.s.caudill@gmail.com
+                </p>
               </div>
-              <a 
-                href="sms:+6627011626" 
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                (662) 701-1626
-              </a>
-            </div>
+            </a>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <Github className="w-6 h-6 text-white" />
-                <h2 className="text-xl font-semibold text-white">GitHub</h2>
+            <a 
+              href="sms:+6627011626"
+              className="block group relative"
+              onMouseMove={handleMouseMove}
+              style={glowStyle}
+            >
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.15) 0%, transparent 80%)`,
+                  transform: `perspective(1000px) rotateX(calc((var(--mouse-y) - 50%) * 0.1deg)) rotateY(calc((var(--mouse-x) - 50%) * 0.1deg))`,
+                }}
+              />
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6 transition-all duration-300 hover:bg-white/20">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-6 h-6 text-white" />
+                    <MessageSquare className="w-5 h-5 text-white" />
+                  </div>
+                  <h2 className="text-xl font-semibold text-white">Phone</h2>
+                </div>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  (662) 701-1626
+                </p>
               </div>
-              <a 
-                href="https://github.com/jonathancaudill" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                github.com/jonathancaudill
-              </a>
-            </div>
+            </a>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <Linkedin className="w-6 h-6 text-white" />
-                <h2 className="text-xl font-semibold text-white">LinkedIn</h2>
+            <a 
+              href="https://github.com/jonathancaudill" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block group relative"
+              onMouseMove={handleMouseMove}
+              style={glowStyle}
+            >
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.15) 0%, transparent 80%)`,
+                  transform: `perspective(1000px) rotateX(calc((var(--mouse-y) - 50%) * 0.1deg)) rotateY(calc((var(--mouse-x) - 50%) * 0.1deg))`,
+                }}
+              />
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6 transition-all duration-300 hover:bg-white/20">
+                <div className="flex items-center gap-4 mb-4">
+                  <Github className="w-6 h-6 text-white" />
+                  <h2 className="text-xl font-semibold text-white">GitHub</h2>
+                </div>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  github.com/jonathancaudill
+                </p>
               </div>
-              <a 
-                href="https://linkedin.com/in/jonathancaudill" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                linkedin.com/in/jonathancaudill
-              </a>
-            </div>
+            </a>
+
+            <a 
+              href="https://linkedin.com/in/jonathancaudill" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block group relative"
+              onMouseMove={handleMouseMove}
+              style={glowStyle}
+            >
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.15) 0%, transparent 80%)`,
+                  transform: `perspective(1000px) rotateX(calc((var(--mouse-y) - 50%) * 0.1deg)) rotateY(calc((var(--mouse-x) - 50%) * 0.1deg))`,
+                }}
+              />
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 p-6 transition-all duration-300 hover:bg-white/20">
+                <div className="flex items-center gap-4 mb-4">
+                  <Linkedin className="w-6 h-6 text-white" />
+                  <h2 className="text-xl font-semibold text-white">LinkedIn</h2>
+                </div>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  linkedin.com/in/jonathancaudill
+                </p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
