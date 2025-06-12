@@ -63,7 +63,7 @@ const Stuck = () => {
   }, []);
 
   const handleDownload = () => {
-    const downloadUrl = "https://github.com/jonathancaudill/stuck/releases/download/main/stuck_0.1.1_aarch64.dmg";
+    const downloadUrl = "https://github.com/jonathancaudill/stuck/releases/download/v.1.0.0/stuck_1.0.0_aarch64.dmg";
     window.open(downloadUrl, "_blank");
   };
 
