@@ -40,7 +40,7 @@ const Writing = () => {
         <div className="container max-w-5xl mx-auto px-4 py-12 pt-24">
           <h1 className="text-4xl font-bold mb-8 text-white">Writing</h1>
           <p className="text-gray-300 mb-8">
-            Thoughts, tutorials, and insights on software development, design, and technology.
+            Thoughts, musings, essays, etc.
           </p>
 
           {/* Search bar */}
