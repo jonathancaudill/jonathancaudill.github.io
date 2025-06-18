@@ -38,17 +38,17 @@ const BlogCard = ({ post }: BlogCardProps) => {
         }}
       />
       <CardHeader className="pb-0">
-        <div className="text-sm text-gray-500 dark:text-gray-400">{post.date}</div>
+        <div className="text-sm text-gray-300">{post.date}</div>
         <Link to={`/writing/${post.slug}`} className="hover:underline">
-          <h3 className="text-xl font-semibold text-gray-900 mt-2 dark:text-white">{post.title}</h3>
+          <h3 className="text-xl font-semibold text-white mt-2">{post.title}</h3>
         </Link>
       </CardHeader>
       <CardContent className="py-4 flex-grow">
-        <p className="text-gray-600 dark:text-gray-300">{post.excerpt}</p>
+        <p className="text-gray-300">{post.excerpt}</p>
       </CardContent>
       <CardFooter className="pt-0">
         <Link to={`/writing/${post.slug}`}>
-          <Button variant="ghost" className="p-0 h-auto font-normal text-[#0A0A23] hover:text-[#23234B] hover:bg-transparent">
+          <Button variant="ghost" className="p-0 h-auto font-normal text-white hover:text-gray-300 hover:bg-transparent">
             <span>Read more</span>
             <ArrowRight size={16} className="ml-1" />
           </Button>

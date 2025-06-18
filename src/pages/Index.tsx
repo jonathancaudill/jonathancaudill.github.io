@@ -65,7 +65,7 @@ const Index = () => {
 
           {/* Recent Posts */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-white">Recent Posts</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Recent Posts</h2>
             <div className="grid gap-8 md:grid-cols-2">
               {recentPosts.map((post) => (
                 <Link 
