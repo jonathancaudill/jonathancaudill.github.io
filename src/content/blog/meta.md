@@ -5,8 +5,9 @@ excerpt: "Cash Machines, AI Gambling, and the Returns Investors Expect"
 ---
 Meta. What is there to say about the social-networking monolith that hasn’t been said a thousand times over? It’s an economic bastion of strength, and nothing about that is poised to change anytime soon. I’d like to spend a little time breaking down their most recent finances (currently from March, though we’ll of course get some more data soon)!
 
-| Revenue TTM      | $170.4B |
+|                  |         |
 |------------------|---------|
+| Revenue TTM      | $170.4B |
 | CapEx TTM        | $43.8B  |
 | FCF TTM          | $52.3B  |
 | Share Buybacks   | $28.6B  |
@@ -14,6 +15,7 @@ Meta. What is there to say about the social-networking monolith that hasn’t be
 | Operating Margin | 44.4%   |
 | Debt             | $49.1B  |
 | WACC             | 10.4%   |
+|                  |         |
 
 Look at that—$52.3 billion in free cash flow. Unsurprising for a company of their size, but it’s nevertheless remarkable how much cash on hand they maintain while reinvesting as aggressively as they do: $46.0B on R&D, and $28.6B back to shareholders as they continue to regain control of their stock. Their WACC is at a challenging 10.4%, and it’s worth noting that this is almost entirely from equity. Debt only make up a tiny fraction of their capital structure, and while this comes with some loss of tax breaks, it signifies the fiscal firepower at Meta’s disposal. They rarely have any need to borrow these days, and are able to finance their own goals with cash. In keeping with their vise grip on the social-networking space, they’re betting on their own continued market share.
 

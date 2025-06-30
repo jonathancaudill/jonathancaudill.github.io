@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/20 bg-white/10 rounded-t-[inherit]">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">

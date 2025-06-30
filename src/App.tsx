@@ -15,6 +15,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 const queryClient = new QueryClient();
 
@@ -26,23 +28,25 @@ const App = () => (
       <SpeedInsights />
       <Analytics />
       <BrowserRouter>
-        <div className="min-h-screen">
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/writing" element={<Writing />} />
-              <Route path="/writing/:slug" element={<WritingDetail />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/work/:slug" element={<ProjectDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/stuck" element={<Stuck />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <SimpleBar style={{ maxHeight: '100vh' }} autoHide={false} forceVisible="y">
+          <div className="min-h-screen">
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/writing" element={<Writing />} />
+                <Route path="/writing/:slug" element={<WritingDetail />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/work/:slug" element={<ProjectDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/stuck" element={<Stuck />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </SimpleBar>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

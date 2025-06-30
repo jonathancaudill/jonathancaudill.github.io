@@ -69,11 +69,121 @@
 @layer base {
   * {
     @apply border-border;
+    /* box-sizing: border-box; */
   }
 
-  body {
+  html, body, #root {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif !important;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    min-height: 100vh;
+    overflow-x: hidden !important;
+    background: transparent !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE 10+ */
   }
+
+  #root {
+    min-height: 100vh;
+    background: transparent;
+  }
+
+  /* Ensure no white background shows through on mobile */
+  html {
+    background: transparent !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    html, body, #root {
+      height: 100%;
+      min-height: 100vh;
+      background: transparent !important;
+      overflow-x: hidden !important;
+    }
+  }
+
+  /* Prevent .prose and code blocks from causing horizontal scroll */
+  .prose {
+    @apply w-full max-w-full;
+    overflow-x: hidden;
+    word-break: break-word;
+  }
+  .prose pre {
+    @apply w-full max-w-full;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .prose code {
+    word-break: break-word;
+  }
+  .container {
+    @apply w-full max-w-full;
+  }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+  display: none !important; /* Chrome, Safari, Opera */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(30, 41, 59, 0.18); /* very subtle, semi-transparent */
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 41, 59, 0.28);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30,41,59,0.18) transparent;
+}
+
+@layer utilities {
+  .mr-edge {
+    margin-right: calc(-1 * (100vw - 100%));
+  }
+}
+
+/* Remove global scrollbar hiding for SimpleBar */
+/*
+html, body, #root {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+::-webkit-scrollbar {
+  display: none !important;
+}
+*/
+
+/* SimpleBar custom scrollbar styles */
+.simplebar-scrollbar:before {
+  background: rgba(255,255,255,0.35);
+  border-radius: 8px;
+  transition: background 0.2s;
+  width: 5px !important;
+  left: 1px !important;
+  right: 1px !important;
+}
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 1;
+}
+.simplebar-scrollbar:hover:before {
+  background: rgba(255,255,255,0.6);
+}
+.simplebar-track {
+  background: transparent !important;
+  width: 7px !important;
+  right: 0 !important;
 }

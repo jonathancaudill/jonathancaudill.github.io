@@ -28,7 +28,7 @@ const Index = () => {
     <div className="relative min-h-screen">
       <GradientBackground />
       <div className="relative">
-        <div className="container max-w-5xl mx-auto px-4 py-12 pt-24">
+        <div className="container max-w-5xl mx-auto px-4 py-12 pt-24 mr-edge">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
             <div className="flex-1 text-left">
               <h1 className="text-7xl md:text-8xl font-black tracking-tighter mb-8 leading-tight text-white">

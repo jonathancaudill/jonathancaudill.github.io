@@ -33,4 +33,8 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: ['remark', 'remark-html'],
   },
+  preview: {
+    port: 8080,
+    host: "::",
+  },
 }));

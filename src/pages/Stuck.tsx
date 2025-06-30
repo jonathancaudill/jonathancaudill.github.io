@@ -147,34 +147,32 @@ const Stuck = () => {
                   focused, and distraction-free writing experience that adapts to your system's theme.
                 </p>
               </div>
-              <div className="bg-muted rounded-lg p-4 h-48 flex items-center justify-center">
-                <p className="text-muted-foreground">Image Placeholder</p>
+              <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
+                <img src="/assets/stuck-minimal.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
               </div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="order-2 md:order-1 bg-muted rounded-lg p-4 h-48 flex items-center justify-center">
-                <p className="text-muted-foreground">Image Placeholder</p>
+            <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
+                <img src="/assets/stuck-compact.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
               </div>
               <div className="order-1 md:order-2">
-                <h3 className="text-2xl font-semibold mb-4 text-white">Auto-Saving</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Mini Mode</h3>
                 <p className="text-white/80">
-                  Never worry about losing your thoughts. Stuck automatically saves your notes
-                  as you type, with a subtle indicator to let you know your work is secure.
+                  Stuck features a mini mode, allowing you to make the window as small as you want. Like your own personal scratchpad!
                 </p>
               </div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">Ready When You Are</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Pinnable</h3>
                 <p className="text-white/80">
-                  No need to click to start typing. As soon as you visit Stuck, 
-                  you can immediately capture your thoughts without any friction.
+                  With a simple click or keyboard shortcut, you can pin the window to the top of your screen, using it just like a sticky note.
                 </p>
               </div>
-              <div className="bg-muted rounded-lg p-4 h-48 flex items-center justify-center">
-                <p className="text-muted-foreground">Image Placeholder</p>
+              <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
+                <img src="/assets/stuck-pinnable.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
               </div>
             </div>
           </section>
