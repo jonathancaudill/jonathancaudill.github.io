@@ -79,8 +79,6 @@
     min-height: 100vh;
     overflow-x: hidden !important;
     background: transparent !important;
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE 10+ */
   }
 
   #root {
@@ -149,23 +147,6 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgba(30,41,59,0.18) transparent;
 }
-
-@layer utilities {
-  .mr-edge {
-    margin-right: calc(-1 * (100vw - 100%));
-  }
-}
-
-/* Remove global scrollbar hiding for SimpleBar */
-/*
-html, body, #root {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-}
-::-webkit-scrollbar {
-  display: none !important;
-}
-*/
 
 /* SimpleBar custom scrollbar styles */
 .simplebar-scrollbar:before {

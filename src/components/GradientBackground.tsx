@@ -26,7 +26,7 @@ const GradientBackground = ({ scrollProgress = 0 }: GradientBackgroundProps) => 
 
   return (
     <div 
-      className="fixed inset-0 w-full h-full mr-edge"
+      className="fixed inset-0 w-full h-full"
       style={{
         background: getGradient(),
         zIndex: -1

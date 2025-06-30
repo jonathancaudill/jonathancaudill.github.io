@@ -148,15 +148,15 @@ const Stuck = () => {
                 </p>
               </div>
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
-                <img src="/assets/stuck-minimal.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
+                <img src="/assets/stuck-minimal.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
-                <img src="/assets/stuck-compact.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
+              <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center order-2 md:order-1">
+                <img src="/assets/stuck-compact.png" alt="Screenshot of Stuck app showing mini mode" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
-              <div className="order-1 md:order-2">
+              <div className="order-1 md:order-2 flex flex-col justify-center">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Mini Mode</h3>
                 <p className="text-white/80">
                   Stuck features a mini mode, allowing you to make the window as small as you want. Like your own personal scratchpad!
@@ -166,13 +166,14 @@ const Stuck = () => {
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">Pinnable</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Ready When You Are</h3>
                 <p className="text-white/80">
-                  With a simple click or keyboard shortcut, you can pin the window to the top of your screen, using it just like a sticky note.
+                  No need to click to start typing. As soon as you visit Stuck, 
+                  you can immediately capture your thoughts without any friction.
                 </p>
               </div>
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
-                <img src="/assets/stuck-pinnable.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-cover h-auto w-full max-w-full" />
+                <img src="/assets/stuck-pinnable.png" alt="Screenshot of Stuck app showing pinnable feature" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
             </div>
           </section>
