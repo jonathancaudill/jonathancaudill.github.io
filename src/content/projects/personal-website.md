@@ -12,5 +12,5 @@ This website is built using **React**, **TypeScript**, and **Tailwind CSS**. It 
 ## Key Features
 
 *   **Responsive Interface:** I'm a design freak. Few things I love more than creating a UI.
-*   **Blog:** Simple blog interface using markdown files--easy for me to create, edit, and push to main.
-*   **Contact Form:** Easy way for visitors to get in touch with me.
+*   **Blog:** Dead-simple blog interface using markdown files--easy for me to create, edit, and push to main.
+*   **Contact Info:** Easy way for visitors to figure out how to get in touch with me.

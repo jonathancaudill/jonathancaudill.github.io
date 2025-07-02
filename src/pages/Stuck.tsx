@@ -63,7 +63,7 @@ const Stuck = () => {
   }, []);
 
   const handleDownload = () => {
-    const downloadUrl = "https://github.com/jonathancaudill/stuck/releases/download/v.1.0.0/stuck_1.0.0_aarch64.dmg";
+    const downloadUrl = "https://github.com/jonathancaudill/stuck/releases/download/v1.0.2/stuck.zip";
     window.open(downloadUrl, "_blank");
   };
 
@@ -77,7 +77,7 @@ const Stuck = () => {
         <div className="container max-w-4xl mx-auto px-4 py-12 pt-64">
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-center leading-tight text-white">
             <span className="block">MacOS Stickies,</span>
-            <span className="block">Reimagined.</span>
+            <span className="block">Fixed.</span>
           </h1>
           
           {/* Download Button */}
@@ -91,7 +91,7 @@ const Stuck = () => {
               Download for Mac
             </Button>
             <a 
-              href="https://github.com/jonathancaudill/stuck" 
+              href="https://github.com/jonathancaudill/stuck/releases/tag/v1.0.2" 
               target="_blank" 
               rel="noopener noreferrer"
               className="mt-2 text-sm text-white/70 hover:text-white/90 italic"
@@ -166,10 +166,10 @@ const Stuck = () => {
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-white">Ready When You Are</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-white">Pinnable</h3>
                 <p className="text-white/80">
-                  No need to click to start typing. As soon as you visit Stuck, 
-                  you can immediately capture your thoughts without any friction.
+                  With the click of a button, you can pin the window to the top of your desktop.
+                  Just like a real sticky note.
                 </p>
               </div>
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
