@@ -8,10 +8,11 @@ interface AnimatedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   showArrow?: boolean;
   href?: string;
   size?: 'default' | 'sm' | 'lg' | 'icon';
+  external?: boolean;
 }
 
 const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
-  ({ className, variant = 'default', showArrow = true, href, children, ...props }, ref) => {
+  ({ className, variant = 'default', showArrow = true, href, external = false, children, ...props }, ref) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -60,6 +61,21 @@ const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
     );
 
     if (href) {
+      if (external) {
+        return (
+          <a 
+            href={href} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClasses}
+            onMouseMove={handleMouseMove}
+            style={glowStyle}
+          >
+            {content}
+          </a>
+        );
+      }
+      
       return (
         <Link 
           to={href} 

@@ -24,7 +24,7 @@ const Contact = () => {
         <div className="container max-w-5xl mx-auto px-4 py-12 pt-24">
           <h1 className="text-4xl font-bold mb-8 text-white">Contact</h1>
           <p className="text-gray-300 mb-12 text-lg">
-            Have a question or want to work together? Feel free to reach out!
+            Have a question or want to chat? Feel free to reach out!
           </p>
 
           <div className="max-w-2xl space-y-8">

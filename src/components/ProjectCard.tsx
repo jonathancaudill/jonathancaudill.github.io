@@ -70,15 +70,20 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         </CardHeader>
         <CardContent className="px-4 py-2 flex-grow">
           <p className="text-gray-300 mb-4 line-clamp-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
+          <div className="flex flex-nowrap gap-2 overflow-hidden">
+            {project.technologies.slice(0, 3).map((tech, index) => (
               <span
                 key={index}
-                className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/10 text-gray-300"
+                className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/10 text-gray-300 whitespace-nowrap"
               >
                 {tech}
               </span>
             ))}
+            {project.technologies.length > 5 && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/10 text-gray-300 whitespace-nowrap">
+                +{project.technologies.length - 5} more
+              </span>
+            )}
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-2 pt-2 px-4 items-start mt-auto">
@@ -104,7 +109,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               <Button size="sm" asChild>
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1" onClick={handleLiveDemoClick}>
                   <ExternalLink size={16} />
-                  <span>Live Demo</span>
+                  <span>Take me there</span>
                 </a>
               </Button>
             )}

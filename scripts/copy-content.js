@@ -12,6 +12,10 @@ const targetDir = path.join(__dirname, '../public/content');
 fs.ensureDirSync(targetDir);
 
 // Copy all files from source to target
-fs.copySync(sourceDir, targetDir, { overwrite: true });
-
-console.log('Content files copied successfully!'); 
+try {
+  fs.copySync(sourceDir, targetDir, { overwrite: true });
+  console.log('✅ Content files copied successfully from src/content to public/content');
+} catch (error) {
+  console.error('❌ Error copying content files:', error);
+  process.exit(1);
+} 

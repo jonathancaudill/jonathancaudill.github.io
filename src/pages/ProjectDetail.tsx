@@ -76,6 +76,9 @@ const ProjectDetail = () => {
               <header className="mb-8">
                 <h1 className="text-4xl font-bold mb-4 text-white">{project.title}</h1>
                 <div className="flex items-center gap-4 text-gray-300 mb-4">
+                  {project.date && (
+                    <span>{new Date(project.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                  )}
                   {project.readingTime && (
                     <span>{project.readingTime} min read</span>
                   )}
@@ -93,7 +96,7 @@ const ProjectDetail = () => {
                     <Button size="sm" asChild>
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-black">
                         <ExternalLink size={16} className="text-black" />
-                        <span>Live Demo</span>
+                        <span>Take me there</span>
                       </a>
                     </Button>
                   )}

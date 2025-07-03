@@ -15,7 +15,14 @@ const Work = () => {
     const loadProjects = async () => {
       try {
         const allProjects = await getAllProjects();
-        setProjects(allProjects);
+        // Sort projects by rank (ascending), unranked last
+        const sortedProjects = [...allProjects].sort((a, b) => {
+          if (a.rank === undefined && b.rank === undefined) return 0;
+          if (a.rank === undefined) return 1;
+          if (b.rank === undefined) return -1;
+          return a.rank - b.rank;
+        });
+        setProjects(sortedProjects);
       } catch (error) {
         console.error("Error loading projects:", error);
       } finally {

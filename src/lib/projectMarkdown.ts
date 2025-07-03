@@ -18,6 +18,8 @@ export interface Project {
   slug: string;
   content: string;
   readingTime: number;
+  date?: string;
+  rank?: number;
 }
 
 function calculateReadingTime(content: string): number {
@@ -82,7 +84,9 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       liveUrl: data.liveUrl,
       slug: slug,
       content: processedContent.toString(),
-      readingTime: calculateReadingTime(markdownContent)
+      readingTime: calculateReadingTime(markdownContent),
+      date: data.date,
+      rank: data.rank !== undefined ? Number(data.rank) : undefined,
     };
   } catch (error) {
     console.error(`Error reading project ${slug}:`, error);
@@ -113,7 +117,9 @@ export async function getAllProjects(): Promise<Project[]> {
           liveUrl: data.liveUrl,
           slug: slug,
           content: processedContent.toString(),
-          readingTime: calculateReadingTime(markdownContent)
+          readingTime: calculateReadingTime(markdownContent),
+          date: data.date,
+          rank: data.rank !== undefined ? Number(data.rank) : undefined,
         };
       })
     );

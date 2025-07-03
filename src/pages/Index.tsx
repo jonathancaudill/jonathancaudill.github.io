@@ -6,6 +6,7 @@ import { getAllProjects, Project } from "@/lib/projectMarkdown";
 import ProjectCard from "@/components/ProjectCard";
 import { useEffect, useState } from "react";
 import BlogCard from "@/components/BlogCard";
+import { PdfLink } from "@/components/PdfLink";
 
 const Index = () => {
   const [recentPosts, setRecentPosts] = useState<Post[]>([]);
@@ -18,8 +19,14 @@ const Index = () => {
         getAllProjects()
       ]);
       setRecentPosts(posts.slice(0, 2));
-      const projectsWithHeadshot = projects.slice(0, 2).map(p => ({ ...p, image: '/personalsite.png' }));
-      setFeaturedProjects(projectsWithHeadshot);
+      // Sort projects by rank (ascending), unranked last
+      const sortedProjects = [...projects].sort((a, b) => {
+        if (a.rank === undefined && b.rank === undefined) return 0;
+        if (a.rank === undefined) return 1;
+        if (b.rank === undefined) return -1;
+        return a.rank - b.rank;
+      });
+      setFeaturedProjects(sortedProjects.slice(0, 2));
     };
     loadContent();
   }, []);
@@ -47,9 +54,12 @@ const Index = () => {
                     Read my writing
                   </AnimatedButton>
                 </div>
-                <div className="flex">
+                <div className="flex gap-4">
                   <AnimatedButton href="/stuck" variant="outline">
                     Download stuck
+                  </AnimatedButton>
+                  <AnimatedButton href="/pdfs/resume.pdf" variant="outline" external>
+                    View my resume
                   </AnimatedButton>
                 </div>
               </div>
