@@ -3,7 +3,7 @@ title: "Stuck"
 rank: 4
 description: "A full-stack MacOS notes app built with Rust and Tauri"
 technologies: Rust, Tauri, JavaScript
-image: "/assets/stuck-minimal.png"
+image: "/assets/stuck-minimal.webp"
 githubUrl: "https://github.com/jonathancaudill/stuck"
 liveUrl: "/stuck"
 ---

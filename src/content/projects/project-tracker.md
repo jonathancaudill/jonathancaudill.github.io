@@ -3,7 +3,7 @@ title: "Project Tracker"
 rank: 2
 description: "Simple, elegant project status tracker built in Google Sheets with a JavaScript backend"
 technologies: Spreadsheets, JavaScript
-image: "/project-tracker.png"
+image: "/project-tracker.webp"
 liveUrl: "https://docs.google.com/spreadsheets/d/14G4AzSpWBNKqqCD6XiVS3HtbTq3pjkh8ECfH0nHlG7o/edit?usp=sharing"
 ---
 

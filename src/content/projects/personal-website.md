@@ -3,7 +3,7 @@ title: "Personal Website"
 rank: 5
 description: "A personal website built with React, TypeScript, and Tailwind CSS"
 technologies: React, TypeScript, Tailwind CSS
-image: "/personalsite.png"
+image: "/personalsite.webp"
 githubUrl: "https://github.com/jonathancaudill/personal-site"
 liveUrl: "https://yourdomain.com"
 ---

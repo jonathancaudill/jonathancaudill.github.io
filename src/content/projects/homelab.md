@@ -3,7 +3,7 @@ title: "Homelab"
 rank: 3
 description: "A personal server, running from my apartment"
 technologies: Docker, Linux, Cloudflare
-image: "/homelab.png"
+image: "/homelab.webp"
 ---
 
 When I started reaching the end of college, I realized that my cash flow was at a point where I needed to start making more careful financial decisions. I needed to have some way of tracking and keeping up with my goals. The problem is this: most budgeting software costs at least $100 a year (just for them to host 8kb worth of data at their servers and pay a small amount to Plaid for bank linking). At the time, this seemed like more of a cost than I was willing to bear--_after all, would budgeting my part-time college income really save me that much?_

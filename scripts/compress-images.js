@@ -20,29 +20,22 @@ function getAllImageFiles(dir) {
   return results;
 }
 
-async function compressImage(filePath) {
-  const ext = path.extname(filePath).toLowerCase();
+async function convertToWebp(filePath) {
+  const outPath = filePath.replace(/\.(png|jpe?g)$/i, '.webp');
   try {
-    if (ext === '.png') {
-      await sharp(filePath)
-        .png({ quality: 80, compressionLevel: 9 })
-        .toFile(filePath + '.tmp');
-    } else if (ext === '.jpg' || ext === '.jpeg') {
-      await sharp(filePath)
-        .jpeg({ quality: 80, mozjpeg: true })
-        .toFile(filePath + '.tmp');
-    }
-    fs.renameSync(filePath + '.tmp', filePath);
-    console.log(`Compressed: ${filePath}`);
+    await sharp(filePath)
+      .webp({ quality: 80 })
+      .toFile(outPath);
+    console.log(`Converted to WebP: ${outPath}`);
   } catch (err) {
-    console.error(`Failed to compress ${filePath}:`, err);
+    console.error(`Failed to convert ${filePath} to WebP:`, err);
   }
 }
 
 (async () => {
   const images = getAllImageFiles(publicDir);
   for (const img of images) {
-    await compressImage(img);
+    await convertToWebp(img);
   }
-  console.log('Image compression complete!');
+  console.log('WebP conversion complete!');
 })(); 

@@ -148,13 +148,13 @@ const Stuck = () => {
                 </p>
               </div>
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
-                <img src="/assets/stuck-minimal.png" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
+                <img src="/assets/stuck-minimal.webp" alt="Screenshot of Stuck app showing beautiful, minimal design" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center order-2 md:order-1">
-                <img src="/assets/stuck-compact.png" alt="Screenshot of Stuck app showing mini mode" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
+                <img src="/assets/stuck-compact.webp" alt="Screenshot of Stuck app showing mini mode" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
               <div className="order-1 md:order-2 flex flex-col justify-center">
                 <h3 className="text-2xl font-semibold mb-4 text-white">Mini Mode</h3>
@@ -173,7 +173,7 @@ const Stuck = () => {
                 </p>
               </div>
               <div className="bg-transparent rounded-lg p-4 h-48 flex items-center justify-center">
-                <img src="/assets/stuck-pinnable.png" alt="Screenshot of Stuck app showing pinnable feature" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
+                <img src="/assets/stuck-pinnable.webp" alt="Screenshot of Stuck app showing pinnable feature" className="rounded-lg shadow-lg object-contain h-full max-h-40 w-auto mx-auto" />
               </div>
             </div>
           </section>
